@@ -52,3 +52,18 @@ export const addContact = contact => async dispatch => {
     payload: res.data
   });
 };
+
+export const updateContact = contact => async dispatch => {
+  try {
+    const res = await axios.put(
+      `https://jsonplaceholder.typicode.com/users/${contact.id}`,
+      contact
+    );
+    dispatch({
+      type: UPDATE_CONTACT,
+      payload: res.data
+    });
+  } catch (error) {
+    console.log(`updateContact action CRASHED ${error}`);
+  }
+};
